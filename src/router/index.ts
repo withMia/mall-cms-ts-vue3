@@ -1,26 +1,46 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
-
-const routes: Array<RouteRecordRaw> = [
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import localCache from '@/utils/cache'
+import { firstMenu } from '@/utils/map-menus'
+// 创建路由
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    redirect: '/main'
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login/login.vue')
+  },
+  {
+    path: '/main',
+    name: 'main',
+    component: () => import('@/views/main/main.vue')
+    // 子路由在login中拿到数据后再给main添加
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'notFound',
+    component: () => import('@/views/notFound/notFound.vue')
   }
 ]
 
+// 创建路由器
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  history: createWebHashHistory()
 })
 
+// 路由守卫 是回调函数
+router.beforeEach((to) => {
+  if (to.path !== '/login') {
+    const token = localCache.getCache('token')
+    if (!token) {
+      return './login'
+    }
+    if (to.path === '/main') {
+      return firstMenu.url
+    }
+  }
+})
 export default router
