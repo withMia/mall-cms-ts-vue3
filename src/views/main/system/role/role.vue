@@ -35,10 +35,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, nextTick } from 'vue'
 import pageContent from '@/components/page-content'
 import pageSearch from '@/components/page-search'
 import pageModel from '@/components/page-model'
+
+import { defineComponent, computed, ref, nextTick } from 'vue'
 import { roleContentConfig } from './config/roleContentConfig'
 import { roleSearchConfig } from './config/roleSearchConfig'
 import { roleModelConfig } from './config/roleModelConfig'

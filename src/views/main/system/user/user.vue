@@ -34,11 +34,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
-import { useStore } from '@/store'
 import pageSearch from '@/components/page-search'
 import pageContent from '@/components/page-content'
 import pageModel from '@/components/page-model'
+
+import { defineComponent, computed } from 'vue'
+import { useStore } from '@/store'
 import { userSearchConfig } from './config/userSearchConfig'
 import { userContentConfig } from './config/userContentConfig'
 import { userModelConfig } from './config/userModelConfig'

@@ -61,8 +61,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, ref, watch } from 'vue'
 import infoTable from '@/base-ui/table'
+import { defineComponent, computed, ref, watch } from 'vue'
 import { useStore } from '@/store'
 import { usePermission } from '@/hooks/use-permission'
 

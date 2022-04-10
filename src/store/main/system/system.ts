@@ -92,8 +92,7 @@ const systemModule: Module<ISystemState, IRootState> = {
     async createPageDataAction({ dispatch }, payload: any) {
       const { pageName, createData } = payload
       const pageUrl = `/${pageName}`
-      const x = await createPageData(pageUrl, createData)
-      console.log(x)
+      await createPageData(pageUrl, createData)
       dispatch('getPageListAction', {
         pageName,
         queryInfo: {
@@ -107,7 +106,6 @@ const systemModule: Module<ISystemState, IRootState> = {
       const { pageName, editData, id } = payload
       const pageUrl = `/${pageName}/${id}`
       await editPageData(pageUrl, editData)
-
       dispatch('getPageListAction', {
         pageName,
         queryInfo: {
