@@ -62,7 +62,6 @@ export default defineComponent({
         departmentItem.options = store.state.entireDepartment.map((item) => {
           return { title: item.name, value: item.id }
         })
-      // console.log(departmentItem!.options)
       const roleItem = userModelConfig.formItems.find(
         (item) => item.field === 'roleId'
       )
@@ -70,9 +69,6 @@ export default defineComponent({
         roleItem.options = store.state.entireRole.map((item) => {
           return { title: item.name, value: item.id }
         })
-      // console.log(roleItem!.options)
-      console.log(userModelConfig)
-
       return userModelConfig
     })
 

@@ -29,7 +29,7 @@
           <el-button
             plain
             size="small"
-            type="primary"
+            type="text"
             v-if="isUpdate"
             @click="handleEditClick(scope.row)"
           >
@@ -38,7 +38,7 @@
           <el-button
             plain
             size="small"
-            type="danger"
+            type="text"
             v-if="isDelete"
             @click="handleDeleteClick(scope.row)"
           >
@@ -88,6 +88,8 @@ export default defineComponent({
     const isEdit = usePermission(props.pageName, 'edit')
     const isQuery = usePermission(props.pageName, 'query')
 
+    // console.log(isQuery, isEdit, isDelete, isCreate, isUpdate)
+
     // 双向绑定pageInfo
     const pageInfo = ref({ currentPage: 1, pageSize: 10 })
     watch(pageInfo, () => {
@@ -115,6 +117,8 @@ export default defineComponent({
       store.getters[`system/pageListCount`](props.pageName)
     )
 
+    console.log(dataList.value)
+
     // 获取其它的动态插槽名称
     const otherPropSlots = props.ContentConfig?.propList.filter((item: any) => {
       //  排除公共的插槽
@@ -126,7 +130,6 @@ export default defineComponent({
 
     // 删除操作
     const handleDeleteClick = (item: any) => {
-      // console.log(item)
       store.dispatch('system/deletePageDataAction', {
         pageName: props.pageName,
         id: item.id
